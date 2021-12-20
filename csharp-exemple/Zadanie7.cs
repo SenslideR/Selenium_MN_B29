@@ -24,12 +24,12 @@ namespace csharp_example
         [Test]
         public void StickersOfProducts()
         {
-
             var products = driver.FindElements(By.XPath("//li[contains(@class, 'product')]"));
 
-            for (int i = 1; i <= products.Count; i++)
+            foreach (var stickers in products)
             {
-                Assert.True(driver.FindElement(By.XPath("//div[contains(@class, 'sticker')]")).Displayed);
+                var sticker1 = stickers.FindElements(By.CssSelector("div.sticker"));
+                Assert.AreEqual(1, sticker1.Count);
             }
         }
 
