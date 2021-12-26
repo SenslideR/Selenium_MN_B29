@@ -63,6 +63,9 @@ namespace csharp_example
             driver.FindElement(By.XPath("//input[@name='prices[USD]']")).SendKeys("120");
             driver.FindElement(By.XPath("//input[@name='prices[EUR]']")).SendKeys("100");
             driver.FindElement(By.XPath("//button[@name='save']")).Click();
+            //Проверка, что товар добавлен
+            driver.Url = "http://localhost/litecart/";
+            Assert.True(driver.FindElement(By.XPath("//div[contains(text(), 'ProductName')]")).Displayed);
         }
 
         [TearDown]
