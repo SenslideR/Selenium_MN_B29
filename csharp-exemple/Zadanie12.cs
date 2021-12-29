@@ -24,6 +24,7 @@ namespace csharp_example
             driver.FindElement(By.XPath("//input[@type='text']")).SendKeys("admin");
             driver.FindElement(By.XPath("//input[@type='password']")).SendKeys("admin");
             driver.FindElement(By.XPath("//button[@type='submit']")).Click();
+            
 
         }
 
@@ -34,7 +35,8 @@ namespace csharp_example
             driver.FindElement(By.XPath("//li[@id='app-'][2]")).Click();
             driver.FindElement(By.XPath("//a[@class='button'][2]")).Click();
             driver.FindElement(By.XPath("//input[@type='radio'][1]")).Click();
-            driver.FindElement(By.XPath("//input[@name='name[en]']")).SendKeys("ProductName");
+            var ProductName = "Product" + DateTime.Now.Millisecond;
+            driver.FindElement(By.XPath("//input[@name='name[en]']")).SendKeys(ProductName);
             driver.FindElement(By.XPath("//input[@name='code']")).SendKeys("T" + DateTime.Now.Millisecond);
             driver.FindElement(By.XPath("//input[@data-name='Rubber Ducks']")).Click();
             driver.FindElement(By.XPath("//select[@name='default_category_id']/option[@value='1']")).Click();
@@ -64,8 +66,8 @@ namespace csharp_example
             driver.FindElement(By.XPath("//input[@name='prices[EUR]']")).SendKeys("100");
             driver.FindElement(By.XPath("//button[@name='save']")).Click();
             //Проверка, что товар добавлен
-            driver.Url = "http://localhost/litecart/";
-            Assert.True(driver.FindElement(By.XPath("//div[contains(text(), 'ProductName')]")).Displayed);
+            //driver.Url = "http://localhost/litecart/";
+            Assert.True(driver.FindElement(By.XPath("//*[.='" + ProductName + "']")).Displayed);
         }
 
         [TearDown]
