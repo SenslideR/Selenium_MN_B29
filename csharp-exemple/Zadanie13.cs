@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
+using SeleniumExtras.WaitHelpers;
 
 namespace csharp_example
 {
@@ -52,15 +53,17 @@ namespace csharp_example
             {
                 var table = driver.FindElement(By.CssSelector("table.dataTable"));
                 wait.Until(driver => driver.FindElement(By.CssSelector("button[name=remove_cart_item]")).Displayed);
-                driver.FindElement(By.CssSelector("button[name=remove_cart_item]")).Click();             
-            }
+                driver.FindElement(By.CssSelector("button[name=remove_cart_item]")).Click();
+                wait.Until(ExpectedConditions.StalenessOf(table));
+            }            
         }
 
         [TearDown]
         public void stop()
         {
-            driver.Quit();
-            driver = null;
+            
+             driver.Quit();
+             driver = null;
         }
     }
 }
