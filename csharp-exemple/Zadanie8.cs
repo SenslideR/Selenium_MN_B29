@@ -42,7 +42,7 @@ namespace csharp_example
 
             CollectionAssert.AreEqual(countryNamesSorted, countryNames);
 
-            for (int i = 1; i <= countries.Count; i++)
+            for (int i = 0; i <= countries.Count; i++)
             {
                 if (!driver.FindElement(By.XPath("//tr[@class='row'][" + i + "]/td[6]")).Text.Equals("0"))
                 {
