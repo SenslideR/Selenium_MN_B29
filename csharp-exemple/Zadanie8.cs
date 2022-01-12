@@ -50,7 +50,7 @@ namespace csharp_example
                     var geoZones = driver.FindElements(By.XPath("//table[@id='table-zones']//tr//td[3]"));
                     var geoZonesNames = new List<string>();
 
-                    for (int j = 1; j < geoZones.Count - 1; j++)
+                    for (int j = 0; j < geoZones.Count - 1; j++)
                     {
                         geoZonesNames.Add(geoZones[j].Text);
                     }
