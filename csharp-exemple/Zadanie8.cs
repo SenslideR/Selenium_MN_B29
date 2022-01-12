@@ -47,12 +47,12 @@ namespace csharp_example
                 if (!driver.FindElement(By.XPath("//tr[@class='row'][" + i + "]/td[6]")).Text.Equals("0"))
                 {
                     driver.FindElement(By.XPath("//tr[@class='row'][" + i + "]/td[5]/a")).Click();
-                    var geoZones = driver.FindElements(By.CssSelector("table.dataTable td:nth-of-type(3) input[type=hidden]"));
+                    var geoZones = driver.FindElements(By.XPath("//table[@id='table-zones']//tr//td[3]"));
                     var geoZonesNames = new List<string>();
 
-                    foreach (IWebElement geoZone in geoZones)
+                    for (int j = 1; j < geoZones.Count - 1; j++)
                     {
-                        geoZonesNames.Add(geoZone.Text);
+                        geoZonesNames.Add(geoZones[j].Text);
                     }
 
                     var geoZonesNamesSorted = new List<string>(geoZonesNames);
