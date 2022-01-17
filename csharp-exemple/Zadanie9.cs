@@ -35,7 +35,7 @@ namespace csharp_example
             {
                 driver.FindElement(By.XPath("//tr[@class='row'][" + i + "]/td[3]/a")).Click();
 
-                var geoZones = driver.FindElements(By.CssSelector("select[name*=zones]:not([class*=hidden])"));
+                var geoZones = driver.FindElements(By.XPath("//table[@id='table-zones']//tr//td[3]//option[@selected='selected']"));
                 var geoZonesNames = new List<string>();
 
                 foreach (IWebElement geoZone in geoZones)
